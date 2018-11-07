@@ -12,6 +12,16 @@ public class GrupoResolucion {
 		
 	}
 
+	public GrupoResolucion(int codigo, String nombre, EstadoGrupoResolucion estado, String descripcion) {
+		super();
+		this.codigo = codigo;
+		this.nombre = nombre;
+		this.estado = estado;
+		this.descripcion = descripcion;
+	}
+
+
+
 	public int getCodigo() {
 		return codigo;
 	}

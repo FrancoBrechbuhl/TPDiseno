@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
@@ -24,6 +25,8 @@ public class RegistroTicketB extends JPanel {
 	private MenuPrincipalMesa frame;
 	private JTextField textObservaciones;
 	private GestorDB gestorDB;
+	private JComboBox comboBoxGrupo;
+	private JComboBox JComboBoxClasificacion;
 
 	public RegistroTicketB(MenuPrincipalMesa f) {
 		this.frame=f;
@@ -31,17 +34,11 @@ public class RegistroTicketB extends JPanel {
 		
 		this.gestorDB = new GestorDB();
 		
-		//TODO: ObtenerGrupoResolucionBD
-		
 		this.gestorDB.connectDatabase();
 		List<Clasificacion> clasificacionesTicket = this.gestorDB.seleccionarClasificaciones();
 		this.gestorDB.cerrarConexion();
 		
-		String[] grupos= {""};
-		String[] estadosTicket= {"Abierto en mesa de ayuda","Abierto derivado a grupo","Solucionado a la espera ok","Cerrado"};
-		
-		
-		
+		String[] estadosTicket = {"Abierto en mesa de ayuda","Abierto derivado a grupo","Solucionado a la espera ok","Cerrado"};
 		
 		JLabel lblObservaciones = new JLabel("Observaciones");
 		lblObservaciones.setBounds(28, 11, 145, 14);
@@ -64,20 +61,53 @@ public class RegistroTicketB extends JPanel {
 		lblNewLabel_2.setBounds(38, 171, 113, 14);
 		this.add(lblNewLabel_2);
 		
-		JComboBox comboBoxEstado = new JComboBox(estadosTicket);
-		comboBoxEstado.setBounds(179, 118, 183, 20);
-		this.add(comboBoxEstado);
-		
-		JComboBox JComboBoxClasificacion = new JComboBox();
+		JComboBoxClasificacion = new JComboBox();
 		for(Clasificacion c : clasificacionesTicket) {
 			JComboBoxClasificacion.addItem(c.getNombre());
 		}
 		JComboBoxClasificacion.setBounds(179, 143, 183, 20);
+		
+		String nombreClas = (String)JComboBoxClasificacion.getSelectedItem();
+		
+		List<GrupoResolucion> grupos = new ArrayList<GrupoResolucion>();
+		
+		for(Clasificacion c : clasificacionesTicket) {
+			if(c.getNombre().equals(nombreClas)) {
+				grupos = c.getGrupos();
+			}
+		}
+		
+		comboBoxGrupo = new JComboBox();
+		for(GrupoResolucion gr : grupos) {
+			comboBoxGrupo.addItem(gr.getNombre());
+		}
+		
+		JComboBox comboBoxEstado = new JComboBox(estadosTicket);
+		comboBoxEstado.setBounds(179, 118, 183, 20);
+		this.add(comboBoxEstado);
+		
+		JComboBoxClasificacion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				List<GrupoResolucion> grup = new ArrayList<GrupoResolucion>();
+				int i = JComboBoxClasificacion.getSelectedIndex();
+				for (Clasificacion c : clasificacionesTicket){
+					if (c.getNombre().equals(JComboBoxClasificacion.getSelectedItem())) {
+						grup.addAll(c.getGrupos());
+						for(GrupoResolucion gr : c.getGrupos()) {
+						}
+					}
+				}
+				frame.refreshVentana(grup, clasificacionesTicket, i);
+			}
+		});
+		
 		this.add(JComboBoxClasificacion);
 		
-		JComboBox comboBoxGrupo = new JComboBox(grupos);
+		comboBoxGrupo = new JComboBox();
 		comboBoxGrupo.setBounds(179, 168, 183, 20);
+		
 		this.add(comboBoxGrupo);
+		
 		
 		JButton btnNewButton = new JButton("Cancelar");
 		btnNewButton.setBounds(259, 202, 101, 23);
@@ -87,8 +117,10 @@ public class RegistroTicketB extends JPanel {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if( textObservaciones.getText().isEmpty()) {
-					//TODO: Reveer mensaje de errorB
-					//JOptionPane.showMessageDialog(this,"Los campos no pueden ser nulos.","Error",JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(frame,
+						    "Los campos no pueden ser nulos",
+						    "Error",
+						    JOptionPane.ERROR_MESSAGE);
 				}
 				else {
 					int nroTicket = frame.getTicketEnProceso().getNroTicket();
@@ -101,6 +133,7 @@ public class RegistroTicketB extends JPanel {
 						String grupo=comboBoxGrupo.getSelectedItem().toString();
 						//TODO: Derivar-Gestor(grupo,nroTicket)	
 					}
+					JOptionPane.showMessageDialog(frame, "Cambios guardados", "Exito", JOptionPane.INFORMATION_MESSAGE);
 					
 					
 					
@@ -110,5 +143,32 @@ public class RegistroTicketB extends JPanel {
 		btnNewButton_1.setBounds(146, 202, 101, 23);
 		this.add(btnNewButton_1);
 	}
+
+	public JComboBox getComboBoxGrupo() {
+		return comboBoxGrupo;
+	}
+
+	public void setComboBoxGrupo(JComboBox comboBoxGrupo, List<Clasificacion> clas) {
+		this.comboBoxGrupo = comboBoxGrupo;
+		comboBoxGrupo.setBounds(179, 168, 183, 20);
+		comboBoxGrupo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				List<GrupoResolucion> grup = new ArrayList<GrupoResolucion>();
+				int i = JComboBoxClasificacion.getSelectedIndex();
+				for (Clasificacion c : clas){
+					if (c.getNombre() == comboBoxGrupo.getSelectedItem())
+						grup.addAll(c.getGrupos());
+				}
+				frame.refreshVentana(grup, clas, i);
+			}
+		});
+		this.add(comboBoxGrupo);
+	}
+	
+	public void keepSelectedClass(int i) {
+		JComboBoxClasificacion.setSelectedIndex(i);
+	}
+	
+	
 
 }

@@ -2,6 +2,7 @@ package interfaces;
 
 import interfaces.image.*;
 import interfaces.MenuPrincipalMesa;
+import logica.*;
 
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -15,10 +16,14 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextPane;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
+
+import gestores.GestorDB;
+
 import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 
@@ -27,6 +32,7 @@ import java.awt.SystemColor;
 public class Login extends JFrame {
 	private JPanel contentPane;
 	private JPasswordField passwordField;
+	
 
 	/**
 	 * Launch the application.
@@ -62,6 +68,8 @@ public class Login extends JFrame {
 		textUsers.setFont(new Font("Yu Gothic UI Light", Font.BOLD, 30));
 		textUsers.setBounds(31, 240, 160, 34);
 		contentPane.add(textUsers);
+		
+		
 		
 		JTextPane textPane = new JTextPane();
 		textPane.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -115,10 +123,16 @@ public class Login extends JFrame {
 		JButton btnIniciarSeccin = new JButton("Iniciar sesi\u00F3n");
 		btnIniciarSeccin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO: GuardarUsuario 
+				/*GestorDB gestorDB = new GestorDB();
+				
+				gestorDB.connectDatabase();
+				Usuario usr = gestorDB.seleccionarUsuario(textPane.getText());
+				gestorDB.cerrarConexion();
+				
+				
+				Sesion sesion = new Sesion(usr);*/
 				MenuPrincipalMesa menu = new MenuPrincipalMesa();
 				menu.setVisible(true);
-				//TODO: CerrarVentanaLogin
 				
 				
 				
