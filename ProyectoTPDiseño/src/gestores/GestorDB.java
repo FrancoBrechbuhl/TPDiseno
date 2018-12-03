@@ -17,7 +17,7 @@ public class GestorDB {
 		this.connection = null;
 	}
 
-	public void connectDatabase() {
+	private void connectDatabase() {
 			try {
 				// We register the PostgreSQL driver
 				// Registramos el driver de PostgresSQL
@@ -50,7 +50,7 @@ public class GestorDB {
 
 	}
 
-	public void cerrarConexion() {
+	private void cerrarConexion() {
 		try {
 			this.connection.close();
 		}
@@ -60,68 +60,71 @@ public class GestorDB {
 	}
 
 	public List<Clasificacion> seleccionarClasificaciones() {
+		this.connectDatabase();
 		List<Clasificacion> lista = new ArrayList<Clasificacion>();
-			try{
-				Clasificacion cAux;
-				GrupoResolucion grAux;
-				int idClas;
-				String sql = "SELECT C.idClasificacion, C.nombre, C.estado, C.descripcion, G.idGrupo, G.nombre, G.estado, G.descripcion FROM CLASIFICACION C, GRUPOTIENEASIGNADACLASIFICACION GTAC, GRUPORESOLUCION G WHERE C.idClasificacion = GTAC.idClasificacion AND GTAC.idGrupo = G.idGrupo ORDER BY C.idClasificacion DESC;";
-				ResultSet resultadoClasificaciones;
-				Statement sentencia = this.connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
-				resultadoClasificaciones = sentencia.executeQuery(sql);
-
-				resultadoClasificaciones.next();
-
-				cAux = new Clasificacion();
-				cAux.setIdClasificacion(resultadoClasificaciones.getInt(1));
-				idClas = resultadoClasificaciones.getInt(1);
-				cAux.setNombre(resultadoClasificaciones.getString(2));
-				cAux.setEstado(EstadoClasificacion.valueOf(resultadoClasificaciones.getString(3)));
-				cAux.setDescripcion(resultadoClasificaciones.getString(4));
-
-				grAux = new GrupoResolucion();
-				grAux.setCodigo(resultadoClasificaciones.getInt(5));
-				grAux.setNombre(resultadoClasificaciones.getString(6));
-				grAux.setEstado(EstadoGrupoResolucion.valueOf(resultadoClasificaciones.getString(7)));
-				grAux.setDescripcion(resultadoClasificaciones.getString(8));
-				cAux.agregarGrupo(grAux);
-				lista.add(cAux);
-
-				while(resultadoClasificaciones.next()) {
-					if(idClas == resultadoClasificaciones.getInt(1)) {
-						grAux = new GrupoResolucion();
-						grAux.setCodigo(resultadoClasificaciones.getInt(5));
-						grAux.setNombre(resultadoClasificaciones.getString(6));
-						grAux.setEstado(EstadoGrupoResolucion.valueOf(resultadoClasificaciones.getString(7)));
-						grAux.setDescripcion(resultadoClasificaciones.getString(8));
-						cAux.agregarGrupo(grAux);
-					}
-					else {
-						cAux = new Clasificacion();
-						cAux.setIdClasificacion(resultadoClasificaciones.getInt(1));
-						idClas = resultadoClasificaciones.getInt(1);
-						cAux.setNombre(resultadoClasificaciones.getString(2));
-						cAux.setEstado(EstadoClasificacion.valueOf(resultadoClasificaciones.getString(3)));
-						cAux.setDescripcion(resultadoClasificaciones.getString(4));
-
-						grAux = new GrupoResolucion();
-						grAux.setCodigo(resultadoClasificaciones.getInt(5));
-						grAux.setNombre(resultadoClasificaciones.getString(6));
-						grAux.setEstado(EstadoGrupoResolucion.valueOf(resultadoClasificaciones.getString(7)));
-						grAux.setDescripcion(resultadoClasificaciones.getString(8));
-						cAux.agregarGrupo(grAux);
-						lista.add(cAux);
-					}
+		try{
+			Clasificacion cAux;
+			GrupoResolucion grAux;
+			int idClas;
+			String sql = "SELECT C.idClasificacion, C.nombre, C.estado, C.descripcion, G.idGrupo, G.nombre, G.estado, G.descripcion FROM CLASIFICACION C, GRUPOTIENEASIGNADACLASIFICACION GTAC, GRUPORESOLUCION G WHERE C.idClasificacion = GTAC.idClasificacion AND GTAC.idGrupo = G.idGrupo ORDER BY C.idClasificacion DESC;";
+			ResultSet resultadoClasificaciones;
+			Statement sentencia = this.connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+			resultadoClasificaciones = sentencia.executeQuery(sql);
+			
+			resultadoClasificaciones.next();
+			
+			cAux = new Clasificacion();
+			cAux.setIdClasificacion(resultadoClasificaciones.getInt(1));
+			idClas = resultadoClasificaciones.getInt(1);
+			cAux.setNombre(resultadoClasificaciones.getString(2));
+			cAux.setEstado(EstadoClasificacion.valueOf(resultadoClasificaciones.getString(3)));
+			cAux.setDescripcion(resultadoClasificaciones.getString(4));
+			
+			grAux = new GrupoResolucion();
+			grAux.setCodigo(resultadoClasificaciones.getInt(5));
+			grAux.setNombre(resultadoClasificaciones.getString(6));
+			grAux.setEstado(EstadoGrupoResolucion.valueOf(resultadoClasificaciones.getString(7)));
+			grAux.setDescripcion(resultadoClasificaciones.getString(8));
+			cAux.agregarGrupo(grAux);
+			lista.add(cAux);
+			
+			while(resultadoClasificaciones.next()) {
+				if(idClas == resultadoClasificaciones.getInt(1)) {
+					grAux = new GrupoResolucion();
+					grAux.setCodigo(resultadoClasificaciones.getInt(5));
+					grAux.setNombre(resultadoClasificaciones.getString(6));
+					grAux.setEstado(EstadoGrupoResolucion.valueOf(resultadoClasificaciones.getString(7)));
+					grAux.setDescripcion(resultadoClasificaciones.getString(8));
+					cAux.agregarGrupo(grAux);
+				}
+				else {
+					cAux = new Clasificacion();
+					cAux.setIdClasificacion(resultadoClasificaciones.getInt(1));
+					idClas = resultadoClasificaciones.getInt(1);
+					cAux.setNombre(resultadoClasificaciones.getString(2));
+					cAux.setEstado(EstadoClasificacion.valueOf(resultadoClasificaciones.getString(3)));
+					cAux.setDescripcion(resultadoClasificaciones.getString(4));
+					
+					grAux = new GrupoResolucion();
+					grAux.setCodigo(resultadoClasificaciones.getInt(5));
+					grAux.setNombre(resultadoClasificaciones.getString(6));
+					grAux.setEstado(EstadoGrupoResolucion.valueOf(resultadoClasificaciones.getString(7)));
+					grAux.setDescripcion(resultadoClasificaciones.getString(8));
+					cAux.agregarGrupo(grAux);
+					lista.add(cAux);
 				}
 			}
-			catch(java.sql.SQLException sqle) {
-				System.out.println("Error al seleccionar");
-				sqle.printStackTrace();
-			}
+		}
+		catch(java.sql.SQLException sqle) {
+			System.out.println("Error al seleccionar");
+			sqle.printStackTrace();
+		}
+		this.cerrarConexion();	
 		return lista;
 	}
 
 	public Usuario seleccionarUsuario(String userName) {
+		this.connectDatabase();
 		Usuario us = new Usuario();
 		try{
 			GrupoResolucion gr;
@@ -147,11 +150,12 @@ public class GestorDB {
 			System.out.println("Error al seleccionar");
 			sqle.printStackTrace();
 		}
-
+		this.cerrarConexion();
 		return us;
 	}
 
 	public boolean existeEmpleado(String legajo) {
+		this.connectDatabase();
 		boolean existe = false;
 		try{
 			String sql = "SELECT nroLegajo FROM EMPLEADO;";
@@ -171,10 +175,12 @@ public class GestorDB {
 			System.out.println("Error al seleccionar");
 			sqle.printStackTrace();
 		}
+		this.cerrarConexion();
 		return existe;
 	}
 
 	public int devolverSecuencia() {
+		this.connectDatabase();
 		int nroTicket = -1;
 		try{
 			String sql = "SELECT nextval('" + '"' + "seqticket" + '"' + "');";
@@ -190,10 +196,12 @@ public class GestorDB {
 			System.out.println("Error al seleccionar");
 			sqle.printStackTrace();
 		}
+		this.cerrarConexion();
 		return nroTicket;
 	}
 
 	public Empleado consultaEmpleado(String legajo) {
+		this.connectDatabase();
 		Empleado emp = new Empleado();
 		try{
 			Direccion dir;
@@ -216,10 +224,12 @@ public class GestorDB {
 			System.out.println("Error al seleccionar");
 			sqle.printStackTrace();
 		}
+		this.cerrarConexion();
 		return emp;
 	}
 
 	public Clasificacion seleccionarClasificaciones(String clas) {
+		this.connectDatabase();
 		Clasificacion clasific = new Clasificacion();
 		try{
 			String sql = "SELECT idClasificacion, nombre, estado, descripcion FROM CLASIFICACION;";
@@ -238,10 +248,12 @@ public class GestorDB {
 			System.out.println("Error al seleccionar");
 			sqle.printStackTrace();
 		}
+		this.cerrarConexion();
 		return clasific;
 	}
 
 	public void guardarTicket(Ticket t, boolean update) {
+		this.connectDatabase();
 		try{
 			if(!update) {
 				Statement sentencia = this.connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
@@ -352,9 +364,11 @@ public class GestorDB {
 			System.out.println("Error al guardar");
 			sqle.printStackTrace();
 		}
+		this.cerrarConexion();
 	}
 
 	public Ticket recuperarTicket(int nroTicket) {
+		this.connectDatabase();
 		Ticket t = new Ticket();
 		try{
 			Empleado emp;
@@ -418,10 +432,12 @@ public class GestorDB {
 			System.out.println("Error al seleccionar");
 			sqle.printStackTrace();
 		}
+		this.cerrarConexion();
 		return t;
 	}
 
 	public GrupoResolucion recuperarGrupo(String groupName) {
+		this.connectDatabase();
 		GrupoResolucion gr = new GrupoResolucion();
 		try{
 			String sql = "SELECT idGrupo, estado, descripcion FROM GRUPORESOLUCION WHERE nombre = '" + groupName + "';";
@@ -440,10 +456,11 @@ public class GestorDB {
 			System.out.println("Error al seleccionar");
 			sqle.printStackTrace();
 		}
+		this.cerrarConexion();
 		return gr;
 	}
 
-	public LocalDateTime castearFechaYHora(String fecha, String hora ) {
+	private LocalDateTime castearFechaYHora(String fecha, String hora ) {
 		int a, me, d, h, mi, s;
 		a = Integer.parseInt(fecha.substring(0, 4));
 		me = Integer.parseInt(fecha.substring(5, 7));

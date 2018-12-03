@@ -21,12 +21,9 @@ public class GestorTicket {
 		List<HistorialClasificacion> c = new ArrayList<HistorialClasificacion>();
 		GestorDB gestorDB = new GestorDB();
 
-		gestorDB.connectDatabase();
 		int secuencia = gestorDB.devolverSecuencia();
 		dto.setNroTicket(secuencia);
 		Empleado demand = gestorDB.consultaEmpleado(dto.getNroLegajo());
-
-		gestorDB.cerrarConexion();
 		Ticket t = new Ticket();
 		GestorUsuario gestorUsuario = new GestorUsuario();
 		Usuario usr = gestorUsuario.getUser(s);
@@ -57,10 +54,7 @@ public class GestorTicket {
 		t.agregarHistorialTicket(ht);
 		t.agregarHistorialClasificacion(hc);
 
-
-		gestorDB.connectDatabase();
 		gestorDB.guardarTicket(t, false);
-		gestorDB.cerrarConexion();
 
 	}
 
@@ -89,10 +83,7 @@ public class GestorTicket {
 		t.agregarHistorialTicket(ht);
 
 		GestorDB gestorDB = new GestorDB();
-
-		gestorDB.connectDatabase();
 		gestorDB.guardarTicket(t, true);
-		gestorDB.cerrarConexion();
 	}
 
 	public void derivarTicket(Ticket t, GrupoResolucion g, Sesion s) {
@@ -125,9 +116,7 @@ public class GestorTicket {
 		t.agregarIntervencion(i);
 
 		GestorDB gestorDB = new GestorDB();
-		gestorDB.connectDatabase();
 		gestorDB.guardarTicket(t, true);
-		gestorDB.cerrarConexion();
 	}
 
 	public void setTiempoEnMesa(Ticket t, LocalDateTime n) {
@@ -158,9 +147,7 @@ public class GestorTicket {
 		t.setTiempoEnMesa(m);
 
 		GestorDB gestorDB = new GestorDB();
-		gestorDB.connectDatabase();
 		gestorDB.guardarTicket(t, true);
-		gestorDB.cerrarConexion();
 	}
 
 }
