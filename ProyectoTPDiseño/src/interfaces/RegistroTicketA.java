@@ -27,8 +27,6 @@ import gestores.*;
 import logica.util.*;
 import interfaces.*;
 
-
-
 public class RegistroTicketA extends JPanel {
 	private JFrame frame;
 	private JTextField nroLegajo;
