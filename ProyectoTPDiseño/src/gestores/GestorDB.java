@@ -469,7 +469,6 @@ public class GestorDB {
 			sqle.printStackTrace();
 		}
 		return lista;
-		
 	}
 }
 
