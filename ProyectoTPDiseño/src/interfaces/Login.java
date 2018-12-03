@@ -65,8 +65,6 @@ public class Login extends JFrame {
 		textUsers.setBounds(31, 240, 160, 34);
 		contentPane.add(textUsers);
 
-
-
 		JTextPane textPane = new JTextPane();
 		textPane.setBounds(191, 281, 150, 23);
 		contentPane.add(textPane);
