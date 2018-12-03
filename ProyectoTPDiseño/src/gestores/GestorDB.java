@@ -70,16 +70,16 @@ public class GestorDB {
 			ResultSet resultadoClasificaciones;
 			Statement sentencia = this.connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
 			resultadoClasificaciones = sentencia.executeQuery(sql);
-			
+
 			resultadoClasificaciones.next();
-			
+
 			cAux = new Clasificacion();
 			cAux.setIdClasificacion(resultadoClasificaciones.getInt(1));
 			idClas = resultadoClasificaciones.getInt(1);
 			cAux.setNombre(resultadoClasificaciones.getString(2));
 			cAux.setEstado(EstadoClasificacion.valueOf(resultadoClasificaciones.getString(3)));
 			cAux.setDescripcion(resultadoClasificaciones.getString(4));
-			
+
 			grAux = new GrupoResolucion();
 			grAux.setCodigo(resultadoClasificaciones.getInt(5));
 			grAux.setNombre(resultadoClasificaciones.getString(6));
@@ -87,7 +87,7 @@ public class GestorDB {
 			grAux.setDescripcion(resultadoClasificaciones.getString(8));
 			cAux.agregarGrupo(grAux);
 			lista.add(cAux);
-			
+
 			while(resultadoClasificaciones.next()) {
 				if(idClas == resultadoClasificaciones.getInt(1)) {
 					grAux = new GrupoResolucion();
@@ -104,7 +104,7 @@ public class GestorDB {
 					cAux.setNombre(resultadoClasificaciones.getString(2));
 					cAux.setEstado(EstadoClasificacion.valueOf(resultadoClasificaciones.getString(3)));
 					cAux.setDescripcion(resultadoClasificaciones.getString(4));
-					
+
 					grAux = new GrupoResolucion();
 					grAux.setCodigo(resultadoClasificaciones.getInt(5));
 					grAux.setNombre(resultadoClasificaciones.getString(6));
@@ -119,7 +119,7 @@ public class GestorDB {
 			System.out.println("Error al seleccionar");
 			sqle.printStackTrace();
 		}
-		this.cerrarConexion();	
+		this.cerrarConexion();
 		return lista;
 	}
 
