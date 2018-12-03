@@ -1,6 +1,10 @@
 package logica;
 
 public class Empleado {
+<<<<<<< HEAD
+=======
+	
+>>>>>>> Nacho
 	String nroLegajo;
 	String nombre;
 	String telefonoInterno;
@@ -19,9 +23,13 @@ public class Empleado {
 		this.ubicacion = ubicacion;
 	}
 	
+<<<<<<< HEAD
 	public Empleado() {
 		
 	}
+=======
+	public Empleado() {}
+>>>>>>> Nacho
 
 	public String getNroLegajo() {
 		return nroLegajo;

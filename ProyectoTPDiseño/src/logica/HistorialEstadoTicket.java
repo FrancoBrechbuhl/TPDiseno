@@ -3,12 +3,17 @@ import logica.util.*;
 import java.time.LocalDateTime;
 
 public class HistorialEstadoTicket {
+<<<<<<< HEAD
+=======
+	
+>>>>>>> Nacho
 	LocalDateTime fechaInicio;
 	LocalDateTime fechaFinal;
 	EstadoTicket estado;
 	Ticket ticket;
 	Usuario actor;
 	
+<<<<<<< HEAD
 	public HistorialEstadoTicket() {
 		
 	}
@@ -19,6 +24,9 @@ public class HistorialEstadoTicket {
 		this.estado = estado;
 		this.actor = actor;
 	}
+=======
+	public void HistorialEstadoTicket() {}
+>>>>>>> Nacho
 
 	public LocalDateTime getFechaInicio() {
 		return fechaInicio;

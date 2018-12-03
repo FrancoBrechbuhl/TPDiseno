@@ -4,7 +4,11 @@ public class GestorSistemaPersonal {
 	
 	public GestorSistemaPersonal(){};
 	
+<<<<<<< HEAD
  public boolean consultaEmpleado(String legajo) {
+=======
+ public boolean obtenerE(String legajo) {
+>>>>>>> Nacho
 	 GestorDB gestorDB = new GestorDB();
 		
 		gestorDB.connectDatabase();
@@ -14,4 +18,8 @@ public class GestorSistemaPersonal {
 		return true;
  }
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> Nacho

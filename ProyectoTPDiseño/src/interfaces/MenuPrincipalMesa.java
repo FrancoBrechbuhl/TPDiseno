@@ -25,11 +25,18 @@ public class MenuPrincipalMesa extends JFrame {
 	private JPanel contentPane;
 	private RegistroTicketA registroA;
 	private RegistroTicketB registroB;
+<<<<<<< HEAD
+=======
+	private RegistroTicketB registroBaux;
+>>>>>>> Nacho
 	private Menu menu;
 	private CardLayout cardLayout= new CardLayout();
 	private DTOTicket ticketEnProceso;
 	private boolean guiSeleccionada;
+<<<<<<< HEAD
 	private Sesion sesion;
+=======
+>>>>>>> Nacho
 
 
 	/**
@@ -49,12 +56,26 @@ public class MenuPrincipalMesa extends JFrame {
 		
 		registroA = new RegistroTicketA(this);
 		registroB = new RegistroTicketB(this);
+<<<<<<< HEAD
+=======
+		registroBaux = new RegistroTicketB(this);
+>>>>>>> Nacho
 		menu = new Menu(this); 
 		
 		contentPane.add(menu, "3");
 		contentPane.add(registroA,"1");
 		contentPane.add(registroB,"2");
+<<<<<<< HEAD
 	}
+=======
+		contentPane.add(registroBaux,"3");
+		guiSeleccionada = true;
+		System.out.println();
+		
+	}
+		
+		
+>>>>>>> Nacho
 	
 	public void cambiarVentana(int n,DTOTicket dtoTicket) {
 		this.ticketEnProceso=dtoTicket;
@@ -66,6 +87,7 @@ public class MenuPrincipalMesa extends JFrame {
 				cardLayout.show(contentPane, "2");
 				break;
 		}
+<<<<<<< HEAD
 	}
 	
 	public void cambiarVentanaMenu(int n) {
@@ -77,6 +99,38 @@ public class MenuPrincipalMesa extends JFrame {
 			cardLayout.show(contentPane, "3");
 		}
 	}
+=======
+	}
+	
+	public void cambiarVentanaMenu(int n) {
+		switch(n) {
+		case 1: //Registrar Ticket
+			cardLayout.show(contentPane, "1");
+		}
+	}
+		
+	public void refreshVentana(List<GrupoResolucion> grupos, List<Clasificacion> clas, int i) {
+		JComboBox combo = new JComboBox();
+		for (GrupoResolucion g : grupos) {
+			combo.addItem(g);
+		}
+		if(guiSeleccionada) {
+			guiSeleccionada = !guiSeleccionada;
+			registroBaux.setComboBoxGrupo(combo, clas);
+			registroBaux.keepSelectedClass(i);
+			cardLayout.show(contentPane, "3");
+			System.out.println("Llego");
+		}
+		else {
+			guiSeleccionada = !guiSeleccionada;
+			registroB.setComboBoxGrupo(combo, clas);
+			registroB.keepSelectedClass(i);
+			cardLayout.show(contentPane, "2");
+			System.out.println("Llego 2");
+		}
+	}
+		
+>>>>>>> Nacho
 	
 	public DTOTicket getTicketEnProceso() {
 		return ticketEnProceso;

@@ -95,7 +95,11 @@ public class RegistroTicketA extends JPanel {
 				}
 				else {
 					GestorSistemaPersonal gestorPersonal = new GestorSistemaPersonal();
+<<<<<<< HEAD
 					boolean e = gestorPersonal.consultaEmpleado(nroLegajo.getText());
+=======
+					boolean e = gestorPersonal.obtenerE(nroLegajo.getText());
+>>>>>>> Nacho
 					if(!e) {
 					JOptionPane.showMessageDialog(frame,
 						    "Ingrese un número de legajo válido",
@@ -104,9 +108,15 @@ public class RegistroTicketA extends JPanel {
 					}
 					else {
 					try {
+<<<<<<< HEAD
 						GestorTicket gestorTicket = new GestorTicket();
 						DTOTicket dtoTicket= new DTOTicket(nroLegajo.getText(), descripcion.getText(),comboBoxClasificaciones.getSelectedItem().toString(),now);
 						gestorTicket.registrarTicket(dtoTicket, ((MenuPrincipalMesa)frame).getSesion());
+=======
+						DTOTicket dtoTicket= new DTOTicket(nroLegajo.getText(), descripcion.getText(),comboBoxClasificaciones.getSelectedItem().toString(),now);
+						GestorTicket gestorTicket = new GestorTicket();
+						gestorTicket.registrarTicket(dtoTicket);
+>>>>>>> Nacho
 						JOptionPane.showMessageDialog(frame, "Ticket guardado exitosamente", "Exito", JOptionPane.INFORMATION_MESSAGE);
 						((MenuPrincipalMesa)frame).cambiarVentana(2,dtoTicket);
 					

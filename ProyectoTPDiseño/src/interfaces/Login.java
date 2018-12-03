@@ -18,7 +18,10 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 import gestores.GestorDB;
+<<<<<<< HEAD
 import gestores.GestorUsuario;
+=======
+>>>>>>> Nacho
 
 import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
@@ -33,7 +36,10 @@ import java.awt.SystemColor;
 public class Login extends JFrame {
 	private JPanel contentPane;
 	private JPasswordField passwordField;
+<<<<<<< HEAD
 	private JFrame frame=this;
+=======
+>>>>>>> Nacho
 	
 
 	/**
@@ -100,19 +106,29 @@ public class Login extends JFrame {
 		JButton btnIniciarSeccin = new JButton("Iniciar sesi\u00F3n");
 		btnIniciarSeccin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+<<<<<<< HEAD
 				GestorDB gestorDB = new GestorDB();
+=======
+				/*GestorDB gestorDB = new GestorDB();
+>>>>>>> Nacho
 				
 				gestorDB.connectDatabase();
 				Usuario usr = gestorDB.seleccionarUsuario(textPane.getText());
 				gestorDB.cerrarConexion();
 				
 				
+<<<<<<< HEAD
 				GestorUsuario gestorUsuario = new GestorUsuario();
 				Sesion s= gestorUsuario.setUsuarioLogueado(usr);
 				
 				MenuPrincipalMesa menu = new MenuPrincipalMesa(s);
 				menu.setVisible(true);
 				frame.dispose();
+=======
+				Sesion sesion = new Sesion(usr);*/
+				MenuPrincipalMesa menu = new MenuPrincipalMesa();
+				menu.setVisible(true);
+>>>>>>> Nacho
 				
 				
 				

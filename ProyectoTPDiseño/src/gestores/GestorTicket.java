@@ -1,16 +1,20 @@
 package gestores;
 import logica.util.*;
 import logica.*;
+<<<<<<< HEAD
 import java.util.List;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.time.temporal.ChronoUnit;
+=======
+>>>>>>> Nacho
 
 public class GestorTicket {
 	
 	public GestorTicket() {};
 	
+<<<<<<< HEAD
 	public void registrarTicket(DTOTicket dto, Sesion s){
 		
 		List<Intervencion> l = new ArrayList<Intervencion>();
@@ -158,6 +162,12 @@ public class GestorTicket {
 		gestorDB.connectDatabase();
 		gestorDB.guardarTicket(t, true);
 		gestorDB.cerrarConexion();
+=======
+	public void registrarTicket(DTOTicket dto){
+		Ticket t = new Ticket();
+		//TODO: seguir creacion ticket
+		
+>>>>>>> Nacho
 	}
 
 }

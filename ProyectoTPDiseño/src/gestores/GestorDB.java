@@ -115,6 +115,51 @@ public class GestorDB {
 	
 	public Usuario seleccionarUsuario(String userName) {
 		Usuario us = new Usuario();
+			GrupoResolucion gr;
+			Direccion dir;
+			String sql = "SELECT E.nroLegajo, E.nombre, E.telefonoDirecto, E.telefonoInterno, E.cargo, D.calle, D.numero, D.piso, D.oficina, D.ciudad, D.provincia, U.nombreUsuario, U.password, G.idGrupo, G.nombre, G.estado, G.descripcion FROM EMPLEADO E, USUARIO U, GRUPORESOLUCION G, DIRECCION D WHERE E.idDireccion = D.idDireccion AND E.nombreUsuario = U.nombreUsuario AND U.idGrupo = G.idGrupo;";
+			ResultSet resultadoUsuario;
+			Statement sentencia = this.connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);				
+			resultadoUsuario = sentencia.executeQuery(sql);
+			
+			while(resultadoUsuario.next()) {
+				if(userName.equals(resultadoUsuario.getString(12))) {
+					gr = new GrupoResolucion(resultadoUsuario.getInt(14), resultadoUsuario.getString(15), EstadoGrupoResolucion.valueOf(resultadoUsuario.getString(16)), resultadoUsuario.getString(17));
+					dir = new Direccion(resultadoUsuario.getString(6), resultadoUsuario.getString(7), resultadoUsuario.getString(8),resultadoUsuario.getString(9), resultadoUsuario.getString(10), resultadoUsuario.getString(11));
+					us.setNombreUsuario(resultadoUsuario.getString(12));
+					us.setPassword(resultadoUsuario.getString(13));
+					us.setGrupo(gr);
+					us.setUbicacion(dir);
+				}
+			}
+			System.out.println("Salio bien");
+		}
+		catch(java.sql.SQLException sqle) {
+			System.out.println("Error al seleccionar");
+			sqle.printStackTrace();
+		}
+		
+		return us;
+	}
+	
+	public boolean existeEmpleado(String legajo) {
+		boolean existe = false;
+		try{
+			String sql = "SELECT nroLegajo FROM EMPLEADO;";
+			ResultSet resultadoEmpleado;
+			Statement sentencia = this.connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);				
+			resultadoEmpleado = sentencia.executeQuery(sql);
+			
+			while(resultadoEmpleado.next()) {
+				if(legajo.equals(resultadoEmpleado.getString(1))) {
+					existe = true;
+				}
+			}
+		
+			System.out.println("Salio bien");
+		}
+		catch(java.sql.SQLException sqle) {
+			System.out.println("Error al seleccionar");
 		try{
 			GrupoResolucion gr;
 			Direccion dir;
