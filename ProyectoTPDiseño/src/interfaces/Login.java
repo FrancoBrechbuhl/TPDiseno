@@ -99,13 +99,11 @@ public class Login extends JFrame {
 				Usuario usr = gestorDB.seleccionarUsuario(textPane.getText());
 				
 				GestorUsuario gestorUsuario = new GestorUsuario();
-				Sesion s= gestorUsuario.setUsuarioLogueado(usr);
+				Sesion s = gestorUsuario.setUsuarioLogueado(usr);
 				
 				MenuPrincipalMesa menu = new MenuPrincipalMesa(s);
 				menu.setVisible(true);
 				frame.dispose();
-				Sesion sesion = new Sesion(usr);
-				MenuPrincipalMesa menu = new MenuPrincipalMesa(s);
 				menu.setVisible(true);
 			}
 		});
