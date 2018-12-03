@@ -14,14 +14,11 @@ public class Clasificacion {
 	
 	public Clasificacion() {
 		this.grupos = new ArrayList<GrupoResolucion>();
-<<<<<<< HEAD
 	}
 	
 	public Clasificacion(int idClasificacion, String nombre) {
 		this.idClasificacion = idClasificacion;
 		this.nombre = nombre;
-=======
->>>>>>> Nacho
 	}
 	
 	public Clasificacion(int idClasificacion, String nombre, String descripcion, EstadoClasificacion estado, List<GrupoResolucion> grupos) {

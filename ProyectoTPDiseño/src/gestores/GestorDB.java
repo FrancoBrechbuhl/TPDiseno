@@ -2,14 +2,9 @@ package gestores;
 
 import java.sql.*;
 import logica.*;
-<<<<<<< HEAD
 import logica.util.*;
 
 import java.time.LocalDateTime;
-=======
-import logica.util.EstadoClasificacion;
-import logica.util.EstadoGrupoResolucion;
->>>>>>> Nacho
 
 import java.util.List;
 import java.util.ArrayList;
@@ -37,8 +32,7 @@ public class GestorDB {
 				connection = DriverManager.getConnection(
 				        "jdbc:postgresql://localhost/postgres",
 				        "postgres", "TF135");
-<<<<<<< HEAD
-=======
+
 				boolean valido = connection.isValid(50000);
 				if(valido) {
 					System.out.println("Test DB OK");
@@ -46,7 +40,6 @@ public class GestorDB {
 				else {
 					System.out.println("Test DB fail");
 				}
->>>>>>> Nacho
 			}
 			catch (java.sql.SQLException sqle) {
 				System.out.println("Error al conectarse a la BD");
@@ -130,8 +123,6 @@ public class GestorDB {
 	
 	public Usuario seleccionarUsuario(String userName) {
 		Usuario us = new Usuario();
-<<<<<<< HEAD
-=======
 		try{
 			GrupoResolucion gr;
 			Direccion dir;
@@ -184,7 +175,6 @@ public class GestorDB {
 	}
 	
 	public void seleccionar() {
->>>>>>> Nacho
 		try{
 			GrupoResolucion gr;
 			Direccion dir;
@@ -210,27 +200,6 @@ public class GestorDB {
 		}
 		
 		return us;
-	}
-	
-	public boolean existeEmpleado(String legajo) {
-		boolean existe = false;
-		try{
-			String sql = "SELECT nroLegajo FROM EMPLEADO;";
-			ResultSet resultadoEmpleado;
-			Statement sentencia = this.connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);				
-			resultadoEmpleado = sentencia.executeQuery(sql);
-			
-			while(resultadoEmpleado.next()) {
-				if(legajo.equals(resultadoEmpleado.getString(1))) {
-					existe = true;
-				}
-			}
-		}
-		catch(java.sql.SQLException sqle) {
-			System.out.println("Error al seleccionar");
-			sqle.printStackTrace();
-		}
-		return existe;
 	}
 	
 	public int devolverSecuencia() {
@@ -450,7 +419,6 @@ public class GestorDB {
 			while(resultadoTicket.next()) {	
 				gr = new GrupoResolucion(resultadoTicket.getInt(8), resultadoTicket.getString(9), EstadoGrupoResolucion.valueOf(resultadoTicket.getString(10)), resultadoTicket.getString(11));
 				user = new Usuario(resultadoTicket.getString(6), resultadoTicket.getString(7), gr);
-				//het = new HistorialEstadoTicket(this.castearFechaYHora(resultadoTicket.getString(1), resultadoTicket.getString(2)), this.castearFechaYHora(resultadoTicket.getString(3), resultadoTicket.getString(4)), EstadoTicket.valueOf(resultadoTicket.getString(5)), t, user); //TODO: para proxima entrega
 				het = new HistorialEstadoTicket(this.castearFechaYHora(resultadoTicket.getString(1), resultadoTicket.getString(2)), EstadoTicket.valueOf(resultadoTicket.getString(5)), t, user);
 				listaEstado.add(het);
 			}

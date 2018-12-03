@@ -13,13 +13,9 @@ public class Usuario extends Empleado {
 		this.grupo = grupo;
 	}
 	
-<<<<<<< HEAD
 	public Usuario() {
 		
 	}
-=======
-	public Usuario() {};
->>>>>>> Nacho
 
 	public String getNombreUsuario() {
 		return nombreUsuario;
@@ -44,8 +40,5 @@ public class Usuario extends Empleado {
 	public void setGrupo(GrupoResolucion grupo) {
 		this.grupo = grupo;
 	}
-	
-	
-	
 
 }

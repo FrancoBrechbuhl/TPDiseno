@@ -27,13 +27,8 @@ public class RegistroTicketB extends JPanel {
 	private MenuPrincipalMesa frame;
 	private JTextField textObservaciones;
 	private GestorDB gestorDB;
-<<<<<<< HEAD
 	private JComboBox<String> comboBoxGrupo;
 	private JComboBox<String> JComboBoxClasificacion;
-=======
-	private JComboBox comboBoxGrupo;
-	private JComboBox JComboBoxClasificacion;
->>>>>>> Nacho
 
 	public RegistroTicketB(MenuPrincipalMesa f) {
 		this.frame=f;
@@ -43,14 +38,8 @@ public class RegistroTicketB extends JPanel {
 		
 		this.gestorDB.connectDatabase();
 		List<Clasificacion> clasificacionesTicket = this.gestorDB.seleccionarClasificaciones();
-<<<<<<< HEAD
-		
-		String[] estadosTicket = {"AbiertoEnMesaDeAyuda","AbiertoDerivadoAGrupo","SolucionadoALaEsperaOk","Cerrado"};
-=======
+		String[] estadosTicket = {"AbiertoDerivadoAGrupo","SolucionadoALaEsperaOk"};
 		this.gestorDB.cerrarConexion();
-		
-		String[] estadosTicket = {"Abierto en mesa de ayuda","Abierto derivado a grupo","Solucionado a la espera ok","Cerrado"};
->>>>>>> Nacho
 		
 		JLabel lblObservaciones = new JLabel("Observaciones");
 		lblObservaciones.setBounds(28, 11, 145, 14);
@@ -75,19 +64,13 @@ public class RegistroTicketB extends JPanel {
 		lblNewLabel_2.setVisible(false);
 		this.add(lblNewLabel_2);
 		
-<<<<<<< HEAD
 		JComboBoxClasificacion = new JComboBox<String>();
-=======
 		JComboBoxClasificacion = new JComboBox();
->>>>>>> Nacho
 		for(Clasificacion c : clasificacionesTicket) {
 			JComboBoxClasificacion.addItem(c.getNombre());
 		}
 		JComboBoxClasificacion.setBounds(179, 143, 183, 20);
-<<<<<<< HEAD
 		JComboBoxClasificacion.setVisible(false);
-=======
->>>>>>> Nacho
 		
 		String nombreClas = (String)JComboBoxClasificacion.getSelectedItem();
 		
@@ -99,7 +82,6 @@ public class RegistroTicketB extends JPanel {
 			}
 		}
 		
-<<<<<<< HEAD
 		comboBoxGrupo = new JComboBox<String>();
 		
 		for(GrupoResolucion gr : grupos) {
@@ -152,15 +134,10 @@ public class RegistroTicketB extends JPanel {
 				}
 			}
 		});
-=======
 		comboBoxGrupo = new JComboBox();
 		for(GrupoResolucion gr : grupos) {
 			comboBoxGrupo.addItem(gr.getNombre());
 		}
-		
-		JComboBox comboBoxEstado = new JComboBox(estadosTicket);
-		comboBoxEstado.setBounds(179, 118, 183, 20);
-		this.add(comboBoxEstado);
 		
 		JComboBoxClasificacion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -183,8 +160,6 @@ public class RegistroTicketB extends JPanel {
 		comboBoxGrupo.setBounds(179, 168, 183, 20);
 		
 		this.add(comboBoxGrupo);
-		
->>>>>>> Nacho
 		
 		JButton btnNewButton = new JButton("Cancelar");
 		btnNewButton.addActionListener(new ActionListener() {

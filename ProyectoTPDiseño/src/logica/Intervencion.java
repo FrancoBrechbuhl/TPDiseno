@@ -11,20 +11,12 @@ public class Intervencion {
 	long tiempoTrabajado;
 	EstadoIntervencion estado;
 	String Observaciones;
-<<<<<<< HEAD
 	Usuario actor;
 	
 	public Intervencion() {
 		
 	}
 	
-=======
-	
-	public void Intervencion() {};
-	
-	
-
->>>>>>> Nacho
 	public Intervencion(Ticket ticket, LocalDateTime fechaAsignacion, LocalDateTime fechaInicioTrabajo,
 			LocalDateTime fechaFinal, long tiempoTrabajado, EstadoIntervencion estado, String observaciones) {
 		super();
@@ -37,11 +29,6 @@ public class Intervencion {
 		Observaciones = observaciones;
 	}
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> Nacho
 	public Ticket getTicket() {
 		return ticket;
 	}
@@ -96,7 +83,6 @@ public class Intervencion {
 
 	public void setObservaciones(String observaciones) {
 		Observaciones = observaciones;
-<<<<<<< HEAD
 	}
 
 	public Usuario getActor() {
@@ -106,13 +92,5 @@ public class Intervencion {
 	public void setActor(Usuario actor) {
 		this.actor = actor;
 	}
-	
-	
-
-=======
-	};
-	
->>>>>>> Nacho
-	
 
 }

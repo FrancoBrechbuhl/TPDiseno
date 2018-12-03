@@ -18,11 +18,7 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 import gestores.GestorDB;
-<<<<<<< HEAD
 import gestores.GestorUsuario;
-=======
->>>>>>> Nacho
-
 import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
 import javax.swing.JButton;
@@ -36,11 +32,7 @@ import java.awt.SystemColor;
 public class Login extends JFrame {
 	private JPanel contentPane;
 	private JPasswordField passwordField;
-<<<<<<< HEAD
 	private JFrame frame=this;
-=======
->>>>>>> Nacho
-	
 
 	/**
 	 * Launch the application.
@@ -74,8 +66,6 @@ public class Login extends JFrame {
 		textUsers.setBounds(31, 240, 160, 34);
 		contentPane.add(textUsers);
 		
-		
-		
 		JTextPane textPane = new JTextPane();
 		textPane.setBounds(191, 281, 150, 23);
 		contentPane.add(textPane);
@@ -99,39 +89,24 @@ public class Login extends JFrame {
 		lblNewLabel.setBounds(133, 51, 138, 149);
 		contentPane.add(lblNewLabel);
 		
-		
 		JLabel lblNewLabel_1 = new JLabel("");
 		contentPane.add(lblNewLabel_1);
 		
 		JButton btnIniciarSeccin = new JButton("Iniciar sesi\u00F3n");
 		btnIniciarSeccin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-<<<<<<< HEAD
 				GestorDB gestorDB = new GestorDB();
-=======
-				/*GestorDB gestorDB = new GestorDB();
->>>>>>> Nacho
-				
-				gestorDB.connectDatabase();
 				Usuario usr = gestorDB.seleccionarUsuario(textPane.getText());
-				gestorDB.cerrarConexion();
 				
-				
-<<<<<<< HEAD
 				GestorUsuario gestorUsuario = new GestorUsuario();
 				Sesion s= gestorUsuario.setUsuarioLogueado(usr);
 				
 				MenuPrincipalMesa menu = new MenuPrincipalMesa(s);
 				menu.setVisible(true);
 				frame.dispose();
-=======
-				Sesion sesion = new Sesion(usr);*/
-				MenuPrincipalMesa menu = new MenuPrincipalMesa();
+				Sesion sesion = new Sesion(usr);
+				MenuPrincipalMesa menu = new MenuPrincipalMesa(s);
 				menu.setVisible(true);
->>>>>>> Nacho
-				
-				
-				
 			}
 		});
 		btnIniciarSeccin.setBounds(89, 521, 222, 23);
