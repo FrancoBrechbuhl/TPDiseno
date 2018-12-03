@@ -27,8 +27,6 @@ import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 
-
-
 public class Login extends JFrame {
 	private JPanel contentPane;
 	private JPasswordField passwordField;
