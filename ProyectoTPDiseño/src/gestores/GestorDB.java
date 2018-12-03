@@ -2,9 +2,14 @@ package gestores;
 
 import java.sql.*;
 import logica.*;
+<<<<<<< HEAD
 import logica.util.*;
 
 import java.time.LocalDateTime;
+=======
+import logica.util.EstadoClasificacion;
+import logica.util.EstadoGrupoResolucion;
+>>>>>>> Nacho
 
 import java.util.List;
 import java.util.ArrayList;
@@ -32,6 +37,16 @@ public class GestorDB {
 				connection = DriverManager.getConnection(
 				        "jdbc:postgresql://localhost/postgres",
 				        "postgres", "TF135");
+<<<<<<< HEAD
+=======
+				boolean valido = connection.isValid(50000);
+				if(valido) {
+					System.out.println("Test DB OK");
+				}
+				else {
+					System.out.println("Test DB fail");
+				}
+>>>>>>> Nacho
 			}
 			catch (java.sql.SQLException sqle) {
 				System.out.println("Error al conectarse a la BD");
@@ -115,6 +130,9 @@ public class GestorDB {
 	
 	public Usuario seleccionarUsuario(String userName) {
 		Usuario us = new Usuario();
+<<<<<<< HEAD
+=======
+		try{
 			GrupoResolucion gr;
 			Direccion dir;
 			String sql = "SELECT E.nroLegajo, E.nombre, E.telefonoDirecto, E.telefonoInterno, E.cargo, D.calle, D.numero, D.piso, D.oficina, D.ciudad, D.provincia, U.nombreUsuario, U.password, G.idGrupo, G.nombre, G.estado, G.descripcion FROM EMPLEADO E, USUARIO U, GRUPORESOLUCION G, DIRECCION D WHERE E.idDireccion = D.idDireccion AND E.nombreUsuario = U.nombreUsuario AND U.idGrupo = G.idGrupo;";
@@ -160,6 +178,13 @@ public class GestorDB {
 		}
 		catch(java.sql.SQLException sqle) {
 			System.out.println("Error al seleccionar");
+			sqle.printStackTrace();
+		}
+		return existe;
+	}
+	
+	public void seleccionar() {
+>>>>>>> Nacho
 		try{
 			GrupoResolucion gr;
 			Direccion dir;
