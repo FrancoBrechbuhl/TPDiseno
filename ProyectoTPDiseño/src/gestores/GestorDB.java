@@ -447,7 +447,6 @@ public class GestorDB {
 		return fechaYHora;
 	}
 	
-	
 	public List<String> getNombreClasificaciones(){
 		List<String> lista = new ArrayList<String>();
 		
