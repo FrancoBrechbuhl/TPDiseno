@@ -36,7 +36,6 @@ public class RegistroTicketB extends JPanel {
 
 		//TODO: Falta separar la logica de capas de esta interface.
 		this.gestorDB = new GestorDB();
-
 		List<Clasificacion> clasificacionesTicket = this.gestorDB.seleccionarClasificaciones();
 		String[] estadosTicket = {"AbiertoDerivadoAGrupo","SolucionadoALaEsperaOk"};
 

@@ -31,6 +31,7 @@ public class RegistroTicketA extends JPanel {
 	private JFrame frame;
 	private JTextField nroLegajo;
 	private JTextField descripcion;
+	
 
 	/**
 	 * Create the frame.
@@ -39,7 +40,7 @@ public class RegistroTicketA extends JPanel {
 		this.frame=f;
 
 		ArrayList<String> clasificaciones = new ArrayList<String>();
-		clasificaciones.add("Default");
+		
 		setLayout(null);
 
 		JLabel lblNmeroDeLegajo = new JLabel("N\u00FAmero de legajo");
