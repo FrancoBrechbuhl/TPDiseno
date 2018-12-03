@@ -2,14 +2,14 @@ package logica;
 import java.time.LocalDateTime;
 
 public class HistorialClasificacion {
-	
+
 	LocalDateTime fechaInicio;
 	LocalDateTime fechaFin;
 	Clasificacion clasificacion;
 	Usuario actor;
-	
+
 	public HistorialClasificacion() {
-		
+
 	}
 
 	public HistorialClasificacion(LocalDateTime fechaInicio, Clasificacion clasificacion, Ticket t, Usuario actor) {
@@ -20,7 +20,7 @@ public class HistorialClasificacion {
 	}
 
 	public void HistorialClasificacion() {
-		
+
 	}
 
 	public LocalDateTime getFechaInicio() {
@@ -54,7 +54,7 @@ public class HistorialClasificacion {
 	public void setActor(Usuario actor) {
 		this.actor = actor;
 	};
-	
-	
+
+
 
 }

@@ -39,7 +39,7 @@ public class RegistroTicketA extends JPanel {
 	 */
 	public RegistroTicketA(JFrame f) {
 		this.frame=f;
-		
+
 		ArrayList<String> clasificaciones = new ArrayList<String>();
 		clasificaciones.add("Default");
 		setLayout(null);
@@ -47,43 +47,43 @@ public class RegistroTicketA extends JPanel {
 		JLabel lblNmeroDeLegajo = new JLabel("N\u00FAmero de legajo");
 		lblNmeroDeLegajo.setBounds(17, 14, 102, 14);
 		this.add(lblNmeroDeLegajo);
-		
+
 		nroLegajo = new JTextField();
 		nroLegajo.setBounds(129, 11, 86, 20);
 		this.add(nroLegajo);
 		nroLegajo.setColumns(10);
-		
+
 		JLabel lblDescripcin = new JLabel("Descripci\u00F3n");
 		lblDescripcin.setBounds(17, 39, 54, 14);
 		this.add(lblDescripcin);
-		
+
 		descripcion = new JTextField();
 		descripcion.setBounds(14, 64, 277, 96);
 		this.add(descripcion);
 		descripcion.setColumns(10);
-		
+
 		JLabel lblClasificacin = new JLabel("Clasificaci\u00F3n");
 		lblClasificacin.setBounds(14, 172, 71, 14);
 		this.add(lblClasificacin);
-		
+
 		JComboBox comboBoxClasificaciones = new JComboBox<String>();
 		for(int i=0;i<clasificaciones.size();i++) {
 			comboBoxClasificaciones.addItem(clasificaciones.get(i));
 		}
-		
+
 		comboBoxClasificaciones.setBounds(95, 169, 196, 20);
-		
+
 		this.add(comboBoxClasificaciones);
-		
-		
+
+
 		DateTimeFormatter dtf= DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 		LocalDateTime now = LocalDateTime.now();
 		String dateTime= dtf.format(now);
-		
+
 		JLabel lblNewLabel = new JLabel("Fecha y hora de apertura: "+ dateTime);
 		lblNewLabel.setBounds(14, 197, 325, 14);
 		this.add(lblNewLabel);
-		
+
 		JButton btnNewButton = new JButton("Aceptar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -96,10 +96,10 @@ public class RegistroTicketA extends JPanel {
 				else {
 					GestorSistemaPersonal gestorPersonal = new GestorSistemaPersonal();
 					boolean e = gestorPersonal.consultaEmpleado(nroLegajo.getText());
-					
+
 					if(!e) {
 					JOptionPane.showMessageDialog(frame,
-						    "Ingrese un número de legajo válido",
+						    "Ingrese un nï¿½mero de legajo vï¿½lido",
 						    "Error",
 						    JOptionPane.ERROR_MESSAGE);
 					}
@@ -110,19 +110,19 @@ public class RegistroTicketA extends JPanel {
 						gestorTicket.registrarTicket(dtoTicket, ((MenuPrincipalMesa)frame).getSesion());
 						JOptionPane.showMessageDialog(frame, "Ticket guardado exitosamente", "Exito", JOptionPane.INFORMATION_MESSAGE);
 						((MenuPrincipalMesa)frame).cambiarVentana(2,dtoTicket);
-					
+
 					}catch(Exception E) { JOptionPane.showMessageDialog(frame,
 						    "Hubo un error al guardar el ticket",
 						    "Error",
 						    JOptionPane.ERROR_MESSAGE); }
 				}
-				
+
 				}
 			}
 		});
 		btnNewButton.setBounds(190, 212, 92, 23);
 		this.add(btnNewButton);
-		
+
 		JButton btnNewButton_1 = new JButton("Cancelar");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

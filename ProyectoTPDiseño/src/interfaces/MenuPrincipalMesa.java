@@ -29,13 +29,13 @@ public class MenuPrincipalMesa extends JFrame {
 	private DTOTicket ticketEnProceso;
 	private boolean guiSeleccionada;
 	private Sesion sesion;
-	
+
 	/**
 	 * Create the frame.
 	 */
 	public MenuPrincipalMesa(Sesion s) {
 		sesion = s;
-		
+
 		setTitle("Mesa de ayuda");
 		this.setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -44,22 +44,22 @@ public class MenuPrincipalMesa extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(cardLayout);
-		
+
 		registroA = new RegistroTicketA(this);
 		registroB = new RegistroTicketB(this);
 		registroBaux = new RegistroTicketB(this);
-		
-		menu = new Menu(this); 
-		
+
+		menu = new Menu(this);
+
 		contentPane.add(menu, "3");
 		contentPane.add(registroA,"1");
 		contentPane.add(registroB,"2");
 		contentPane.add(registroBaux,"3");
 		guiSeleccionada = true;
 		System.out.println();
-		
+
 	}
-	
+
 	public void cambiarVentana(int n,DTOTicket dtoTicket) {
 		this.ticketEnProceso=dtoTicket;
 		switch(n) {
@@ -71,7 +71,7 @@ public class MenuPrincipalMesa extends JFrame {
 				break;
 		}
 	}
-	
+
 	public void cambiarVentanaMenu(int n) {
 		switch(n) {
 		case 1: //Registrar Ticket
@@ -81,7 +81,7 @@ public class MenuPrincipalMesa extends JFrame {
 			cardLayout.show(contentPane, "3");
 		}
 	}
-		
+
 	public void refreshVentana(List<GrupoResolucion> grupos, List<Clasificacion> clas, int i) {
 		JComboBox combo = new JComboBox();
 		for (GrupoResolucion g : grupos) {
@@ -102,7 +102,7 @@ public class MenuPrincipalMesa extends JFrame {
 			System.out.println("Llego 2");
 		}
 	}
-	
+
 	public DTOTicket getTicketEnProceso() {
 		return ticketEnProceso;
 	}
@@ -118,5 +118,5 @@ public class MenuPrincipalMesa extends JFrame {
 	public void setSesion(Sesion sesion) {
 		this.sesion = sesion;
 	}
-	
+
 }

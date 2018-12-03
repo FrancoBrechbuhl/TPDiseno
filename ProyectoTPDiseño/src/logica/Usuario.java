@@ -5,16 +5,16 @@ public class Usuario extends Empleado {
 	String nombreUsuario;
 	String password;
 	GrupoResolucion grupo;
-	
+
 	public Usuario(String nombreUsuario, String password, GrupoResolucion grupo) {
 		super();
 		this.nombreUsuario = nombreUsuario;
 		this.password = password;
 		this.grupo = grupo;
 	}
-	
+
 	public Usuario() {
-		
+
 	}
 
 	public String getNombreUsuario() {

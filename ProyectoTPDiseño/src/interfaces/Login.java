@@ -11,6 +11,7 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextPane;
@@ -59,46 +60,48 @@ public class Login extends JFrame {
 		contentPane = new JPanel();
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JLabel textUsers = new JLabel("Usuario: ");
 		textUsers.setBounds(31, 240, 160, 34);
 		contentPane.add(textUsers);
-		
+
+
+
 		JTextPane textPane = new JTextPane();
 		textPane.setBounds(191, 281, 150, 23);
 		contentPane.add(textPane);
-		
+
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a: ");
 		lblContrasea.setBounds(31, 343, 188, 48);
 		contentPane.add(lblContrasea);
-		
+
 		passwordField = new JPasswordField();
 		passwordField.setToolTipText("");
 		passwordField.setEchoChar('*');
 		passwordField.setBounds(195, 409, 150, 20);
 		passwordField.setBorder(null);
 		contentPane.add(passwordField);
-		
+
 		JLabel label = new JLabel("");
 		label.setBounds(165, 405, 24, 34);
 		contentPane.add(label);
-		
+
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(133, 51, 138, 149);
 		contentPane.add(lblNewLabel);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("");
 		contentPane.add(lblNewLabel_1);
-		
+
 		JButton btnIniciarSeccin = new JButton("Iniciar sesi\u00F3n");
 		btnIniciarSeccin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GestorDB gestorDB = new GestorDB();
 				Usuario usr = gestorDB.seleccionarUsuario(textPane.getText());
-				
+
 				GestorUsuario gestorUsuario = new GestorUsuario();
 				Sesion s = gestorUsuario.setUsuarioLogueado(usr);
-				
+
 				MenuPrincipalMesa menu = new MenuPrincipalMesa(s);
 				menu.setVisible(true);
 				frame.dispose();

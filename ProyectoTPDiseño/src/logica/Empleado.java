@@ -7,7 +7,7 @@ public class Empleado {
 	String telefonoDirecto;
 	String descripcionCargo;
 	Direccion ubicacion;
-	
+
 	public Empleado(String nroLegajo, String nombre, String telefonoInterno, String telefonoDirecto,
 			String descripcionCargo, Direccion ubicacion) {
 		super();
@@ -18,9 +18,9 @@ public class Empleado {
 		this.descripcionCargo = descripcionCargo;
 		this.ubicacion = ubicacion;
 	}
-	
+
 	public Empleado() {
-		
+
 	}
 
 	public String getNroLegajo() {
@@ -70,5 +70,5 @@ public class Empleado {
 	public void setUbicacion(Direccion ubicacion) {
 		this.ubicacion = ubicacion;
 	}
-	
+
 }
